@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mani.itachi.memories.fragments.CreateMemoryFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/detailScreen"
+        android:padding="16dp"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/create_memory_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="Pikachu"
+                android:textAllCaps="true"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:textAllCaps="true"
+                android:id="@+id/create_memory_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="20 Hp"
+                android:textSize="20dp"/>
+
+            <ImageView
+                android:id="@+id/create_memory_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/create_memory_date"
+                android:src="@drawable/pikachu"/>
+
+            <LinearLayout
+                android:id="@+id/pokemonTWHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/create_memory_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:textAllCaps="true"
+                    android:id="@+id/create_memory_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Mouse"
+                    android:layout_margin="1dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:textAllCaps="true"
+                android:id="@+id/create_memory_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pokemonTWHolder"
+                android:gravity="center"
+                android:text="It is going to be a long description"
+                android:textSize="18dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
