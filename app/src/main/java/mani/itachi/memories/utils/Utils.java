@@ -73,7 +73,7 @@ public class Utils {
     }
 
     public static boolean isTypePresent(String type) {
-        String[] strings = {"party","trip","class","fun","masti"};
+        String[] strings = {"birthday","party","food","classroom"};
         for (String s : strings) {
             if (s.equals(type.trim())) {
                 Log.d("True:string recieved:", type);

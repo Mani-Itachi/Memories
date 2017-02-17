@@ -113,7 +113,7 @@ public class HomeFragment extends Fragment {
                     getResources().getIdentifier(memoryDto.getType().toLowerCase(), "drawable",
                             getActivity().getPackageName()))));
         } else {
-            memoryScreen.setBackground(getResources().getDrawable(R.drawable.mainbackkground));
+            memoryScreen.setBackground(getResources().getDrawable(R.drawable.mainbackground));
         }
     }
 

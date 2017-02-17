@@ -131,7 +131,7 @@ public class MemoryDetailFragment extends Fragment {
     }
 
     private void setmemoryData() {
-        getActivity().setTitle(memoryDto.getName());
+        getActivity().setTitle(memoryDto.getName().toUpperCase());
         memoryName.setText(memoryDto.getName());
         memoryType.setText(memoryDto.getType());
         memoryDesc.setText(memoryDto.getDesc());
@@ -158,7 +158,7 @@ public class MemoryDetailFragment extends Fragment {
                     getResources().getIdentifier(memoryType.getText().toString().toLowerCase(), "drawable",
                             getActivity().getPackageName()))));
         } else {
-            detailScreen.setBackground(getResources().getDrawable(R.drawable.mainbackkground));
+            detailScreen.setBackground(getResources().getDrawable(R.drawable.mainbackground));
         }
     }
 

@@ -97,7 +97,7 @@ public class CreateMemoryFragment extends Fragment {
                     getResources().getIdentifier(memoryType.getText().toString().toLowerCase(), "drawable",
                             getActivity().getPackageName()))));
         } else {
-            detailScreen.setBackground(getResources().getDrawable(R.drawable.mainbackkground));
+            detailScreen.setBackground(getResources().getDrawable(R.drawable.mainbackground));
         }
     }
 
