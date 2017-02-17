@@ -2,6 +2,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFF"
     tools:context="mani.itachi.memories.fragments.AboutUsFragment">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/about_bg"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:text="Inugurthi Manikanta"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="200dp"
+                android:textSize="20sp"
+                android:textStyle="italic"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:text="I like video editing and making apps"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="250dp"
+                android:textAllCaps="true"
+                android:layout_marginStart="50dp"
+                android:text="github"
+                android:textColor="#FFFFFF"
+                android:clickable="true"
+                android:id="@+id/about_github"
+                android:autoLink="web"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="250dp"
+                android:layout_marginEnd="50dp"
+                android:textAllCaps="true"
+                android:id="@+id/about_google"
+                android:clickable="true"
+                android:text="google+"
+                android:layout_gravity="end"
+                android:textColor="@color/blue"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:textSize="18sp"
+                />
+
+            <mani.itachi.memories.uicomponents.RoundedImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="25dp"
+                android:id="@+id/about_userimage"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/owner" />
+
+        </FrameLayout>
+
+    </android.support.v7.widget.CardView>
 
 </FrameLayout>

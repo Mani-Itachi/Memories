@@ -44,7 +44,7 @@
                 android:padding="4dp"
                 android:layout_centerInParent="true"
                 android:layout_below="@+id/homememory_date"
-                android:src="@drawable/pikachu"/>
+                android:src="@drawable/user"/>
 
             <LinearLayout
                 android:id="@+id/pokemonTWHolder"

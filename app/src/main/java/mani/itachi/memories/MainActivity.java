@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity
                 CreateMemoryFragment createMemoryFragment = new CreateMemoryFragment();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 String currentDate = sdf.format(new Date());
-                MemoryDto memoryDto = new MemoryDto(100,"Name Your Memory","type",currentDate,"Why so Special?","pikachu");
+                MemoryDto memoryDto = new MemoryDto(100,"Name Your Memory","type",currentDate,"Why so Special?","user");
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("MemoryDto",memoryDto );
                 Log.v("Helllo","mnai");
