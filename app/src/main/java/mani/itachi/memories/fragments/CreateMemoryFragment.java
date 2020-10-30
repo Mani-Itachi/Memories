@@ -5,14 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,7 +33,7 @@ import mani.itachi.memories.utils.Utils;
 public class CreateMemoryFragment extends Fragment {
 
     MemoryDto memoryDto;
-    TextView memoryName,memoryDate,memoryType,memorydesc;
+    TextView memoryName, memoryDate, memoryType, memorydesc;
     ImageView memoryImage;
     Bitmap memoryImageBitmap;
     View detailScreen;
@@ -46,9 +46,9 @@ public class CreateMemoryFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        memoryDto =(MemoryDto) getArguments().getSerializable("MemoryDto");
+        memoryDto = (MemoryDto) getArguments().getSerializable("MemoryDto");
     }
 
     @Override
@@ -61,28 +61,28 @@ public class CreateMemoryFragment extends Fragment {
         return view;
     }
 
-    public void initializeViews(View view){
-        memoryName = (TextView) view.findViewById(R.id.create_memory_name);
-        memoryDate = (TextView) view.findViewById(R.id.create_memory_date);
-        memorydesc = (TextView) view.findViewById(R.id.create_memory_desc);
-        memoryType = (TextView) view.findViewById(R.id.create_memory_type);
-        memoryImage = (ImageView) view.findViewById(R.id.create_memory_image);
+    public void initializeViews(View view) {
+        memoryName = view.findViewById(R.id.create_memory_name);
+        memoryDate = view.findViewById(R.id.create_memory_date);
+        memorydesc = view.findViewById(R.id.create_memory_desc);
+        memoryType = view.findViewById(R.id.create_memory_type);
+        memoryImage = view.findViewById(R.id.create_memory_image);
         detailScreen = view.findViewById(R.id.detailScreen);
         memoryImage.getLayoutParams().height = (int) (Utils.getDisplayHeight(getActivity()) * 0.40);
         setMemoryData();
         setOnClick();
     }
 
-    private void setMemoryData(){
+    private void setMemoryData() {
         memoryName.setText(memoryDto.getName());
         memoryType.setText(memoryDto.getType());
         memoryDate.setText(memoryDto.getDate());
         memorydesc.setText(memoryDto.getDesc());
         Bitmap bitmap = null;
-        if(memoryDto.getImagePath().equals("-1")){
+        if (memoryDto.getImagePath().equals("-1")) {
             bitmap = BitmapFactory.decodeFile(memoryDto.getBitmapPath());
             bitmap = Utils.getRoundedCornerBitmap(bitmap);
-        }else {
+        } else {
             bitmap = BitmapFactory.decodeResource(getResources(), getResources()
                     .getIdentifier(memoryDto.getImagePath(), "drawable", getActivity().getPackageName()));
         }
@@ -230,9 +230,9 @@ public class CreateMemoryFragment extends Fragment {
             // make a new bitmap from your file
             outStream = new FileOutputStream(thumbnail);
             if (id % 2 == 0) {
-                bitmap=Bitmap.createScaledBitmap(bitmap,320,250,false);
+                bitmap = Bitmap.createScaledBitmap(bitmap, 320, 250, false);
             } else {
-                bitmap=Bitmap.createScaledBitmap(bitmap,360,285,false);
+                bitmap = Bitmap.createScaledBitmap(bitmap, 360, 285, false);
             }
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
             outStream.flush();

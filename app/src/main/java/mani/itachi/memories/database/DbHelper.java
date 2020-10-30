@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,9 +13,6 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
-import static android.media.MediaFormat.KEY_HEIGHT;
-import static android.media.MediaFormat.KEY_LEVEL;
 
 /**
  * Created by ManikantaInugurthi on 02-02-2017.
@@ -50,10 +46,10 @@ public class DbHelper extends SQLiteOpenHelper {
             ")";
 
     public static DbHelper mDbHelper = null;
-    private Context mContext;
+    private final Context mContext;
     private MemoryDto mMemoryDto = null;
-    private static List<MemoryDto> myCardsList = new ArrayList<MemoryDto>();
-    private List<String> myCardsNameList = new ArrayList<String>();
+    private static final List<MemoryDto> myCardsList = new ArrayList<MemoryDto>();
+    private final List<String> myCardsNameList = new ArrayList<String>();
     private Runnable setMyCardsListRunnable;
 
     public DbHelper(Context context) {
@@ -97,7 +93,7 @@ public class DbHelper extends SQLiteOpenHelper {
             @Override
             public void run() {
                 SQLiteDatabase db = DbHelper.this.getWritableDatabase();
-                
+
                 ContentValues values = new ContentValues();
                 values.put(KEY_ID, mMemoryDto.getId());
                 values.put(KEY_NAME, mMemoryDto.getName());
@@ -147,8 +143,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public List<MemoryDto> getAllMyCards() {
         if (myCardsList == null) {
-            List<MemoryDto> mem= setMyCardsList();
-            Log.v("tag",String.valueOf(mem.size()));
+            List<MemoryDto> mem = setMyCardsList();
+            Log.v("tag", String.valueOf(mem.size()));
             return mem;
         } else {
             return myCardsList;
@@ -179,7 +175,7 @@ public class DbHelper extends SQLiteOpenHelper {
                         dto.setDesc(c.getString(c.getColumnIndex(KEY_DESC)));
                         dto.setDate(c.getString(c.getColumnIndex(KEY_DATE)));
                         myCardsList.add(dto);
-                        Log.v("added",dto.getName());
+                        Log.v("added", dto.getName());
                         myCardsNameList.add(c.getString(c.getColumnIndex(KEY_NAME)));
                     } while (c.moveToNext());
                 }

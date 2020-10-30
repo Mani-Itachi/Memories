@@ -6,6 +6,6 @@ package mani.itachi.memories.utils;
 
 public class AllStrings {
 
-    public String[] typeString = new String[]{"Birthday","Party","Food","ClassRoom"};
+    public String[] typeString = new String[]{"Birthday", "Party", "Food", "ClassRoom"};
 
 }

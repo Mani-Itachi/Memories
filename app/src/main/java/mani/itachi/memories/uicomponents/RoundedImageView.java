@@ -1,24 +1,22 @@
 package mani.itachi.memories.uicomponents;
 
-/**
- * Created by ManikantaInugurthi on 17-02-2017.
- */
-
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
-public class RoundedImageView extends ImageView {
+/**
+ * Created by ManikantaInugurthi on 17-02-2017.
+ */
+
+public class RoundedImageView extends androidx.appcompat.widget.AppCompatImageView {
 
     public RoundedImageView(Context context) {
         super(context);
@@ -69,7 +67,7 @@ public class RoundedImageView extends ImageView {
             sbmp = bmp;
         }
 
-        Bitmap output = Bitmap.createBitmap(radius, radius, Config.ARGB_8888);
+        Bitmap output = Bitmap.createBitmap(radius, radius, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
 
         final String color = "#BAB399";
@@ -83,7 +81,7 @@ public class RoundedImageView extends ImageView {
         paint.setColor(Color.parseColor(color));
         canvas.drawCircle(radius / 2 + 0.7f, radius / 2 + 0.7f,
                 radius / 2 + 0.1f, paint);
-        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(sbmp, rect, rect, paint);
 
         return output;

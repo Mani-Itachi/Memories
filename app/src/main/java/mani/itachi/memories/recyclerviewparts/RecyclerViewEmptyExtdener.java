@@ -1,11 +1,11 @@
 package mani.itachi.memories.recyclerviewparts;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by ManikantaInugurthi on 03-02-2017.
@@ -13,7 +13,7 @@ import android.view.View;
 
 public class RecyclerViewEmptyExtdener extends RecyclerView {
 
-    private Context mContext;
+    private final Context mContext;
     private View view;
 
     public RecyclerViewEmptyExtdener(Context context) {
@@ -21,12 +21,12 @@ public class RecyclerViewEmptyExtdener extends RecyclerView {
         mContext = context;
     }
 
-    public RecyclerViewEmptyExtdener(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public RecyclerViewEmptyExtdener(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mContext = context;
     }
 
-    public RecyclerViewEmptyExtdener(Context context, @Nullable AttributeSet attrs) {
+    public RecyclerViewEmptyExtdener(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
     }

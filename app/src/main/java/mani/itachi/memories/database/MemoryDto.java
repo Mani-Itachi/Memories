@@ -2,12 +2,11 @@ package mani.itachi.memories.database;
 
 import java.io.Serializable;
 
-import mani.itachi.memories.fragments.MemoryDetailFragment;
-
 /**
  * Created by ManikantaInugurthi on 02-02-2017.
  */
 
+//todo lombok here
 public class MemoryDto implements Serializable {
 
     private int id;
@@ -18,7 +17,8 @@ public class MemoryDto implements Serializable {
     private String imagePath = "-1";
     private String bitmapPath = null;
 
-    public MemoryDto(){}
+    public MemoryDto() {
+    }
 
     public MemoryDto(int id, String name, String type, String date, String desc, String imagePath) {
         this.id = id;

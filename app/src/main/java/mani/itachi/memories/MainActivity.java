@@ -1,5 +1,6 @@
 package mani.itachi.memories;
 
+
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -11,31 +12,29 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.AbsSavedState;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.navigation.NavigationView;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -48,8 +47,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.sql.CommonDataSource;
-
 import mani.itachi.memories.database.MemoryDto;
 import mani.itachi.memories.fragments.AboutUsFragment;
 import mani.itachi.memories.fragments.CreateMemoryFragment;
@@ -59,11 +56,8 @@ import mani.itachi.memories.fragments.MyMemoriesFragment;
 import mani.itachi.memories.uicomponents.CommonAdapter;
 import mani.itachi.memories.utils.Utils;
 
-import static mani.itachi.memories.R.layout.fragment_home;
-import static mani.itachi.memories.R.layout.item;
-
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,CommonAdapter.OnGetViewListener {
+        implements NavigationView.OnNavigationItemSelectedListener, CommonAdapter.OnGetViewListener {
 
     public static final int CAM_CODE = 234;
     public static final int READ_WRITE = 235;
@@ -80,16 +74,16 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         askPermissions();
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         currentFragment = new HomeFragment();
@@ -100,7 +94,7 @@ public class MainActivity extends AppCompatActivity
         supportInvalidateOptionsMenu();
     }
 
-    public void askPermissions(){
+    public void askPermissions() {
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -111,9 +105,9 @@ public class MainActivity extends AppCompatActivity
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
         }
-        if(ContextCompat.checkSelfPermission(MainActivity.this,
-                    Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.CAMERA},CAM_CODE);
+        if (ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, CAM_CODE);
         }
     }
 
@@ -123,10 +117,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)   {
+    public boolean onCreateOptionsMenu(Menu menu) {
         if (currentFragment instanceof HomeFragment) {
             getMenuInflater().inflate(R.menu.main, menu);
-        }else if (currentFragment instanceof MemoryDetailFragment) {
+        } else if (currentFragment instanceof MemoryDetailFragment) {
             getMenuInflater().inflate(R.menu.memory_card_detail, menu);
             MenuItem item = menu.findItem(R.id.action_mycard_edit);
             if (((MemoryDetailFragment) currentFragment).getdialogCreator() != null) {
@@ -136,10 +130,10 @@ public class MainActivity extends AppCompatActivity
                     item.setIcon(R.drawable.edit);
                 }
             }
-        }else if(currentFragment instanceof CreateMemoryFragment){
-            getMenuInflater().inflate(R.menu.create_memory,menu);
-        }else{
-            getMenuInflater().inflate(R.menu.defaultmenu,menu);
+        } else if (currentFragment instanceof CreateMemoryFragment) {
+            getMenuInflater().inflate(R.menu.create_memory, menu);
+        } else {
+            getMenuInflater().inflate(R.menu.defaultmenu, menu);
         }
         return true;
     }
@@ -171,7 +165,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.action_mycard_gallery) {
             MemoryDetailFragment myCardDetailFragment = (MemoryDetailFragment) currentFragment;
             myCardDetailFragment.saveInGallery();
-        } else if (id == R.id.action_editfrag_save){
+        } else if (id == R.id.action_editfrag_save) {
 
             checkAndSaveCard(currentFragment);
 
@@ -180,7 +174,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case CAM_CODE: {
                 if (grantResults.length > 0
@@ -220,7 +214,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -228,43 +221,42 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
 
-            if(!(currentFragment instanceof HomeFragment)){
+            if (!(currentFragment instanceof HomeFragment)) {
                 setFragment(new HomeFragment());
             }
 
         } else if (id == R.id.nav_mymemories) {
 
-            if(!(currentFragment instanceof MyMemoriesFragment)){
+            if (!(currentFragment instanceof MyMemoriesFragment)) {
                 setFragment(new MyMemoriesFragment());
             }
 
         } else if (id == R.id.nav_creatememory) {
 
-            if(!(currentFragment instanceof CreateMemoryFragment)){
+            if (!(currentFragment instanceof CreateMemoryFragment)) {
                 CreateMemoryFragment createMemoryFragment = new CreateMemoryFragment();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 String currentDate = sdf.format(new Date());
-                MemoryDto memoryDto = new MemoryDto(100,"Name Your Memory","type",currentDate,"Why so Special?","user");
+                MemoryDto memoryDto = new MemoryDto(100, "Name Your Memory", "type", currentDate, "Why so Special?", "user");
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("MemoryDto",memoryDto );
-                Log.v("Helllo","mnai");
+                bundle.putSerializable("MemoryDto", memoryDto);
+                Log.v("Helllo", "mnai");
                 createMemoryFragment.setArguments(bundle);
                 setFragment(createMemoryFragment);
             }
 
         } else if (id == R.id.nav_aboutus) {
 
-            if(!(currentFragment instanceof AboutUsFragment)){
+            if (!(currentFragment instanceof AboutUsFragment)) {
                 setFragment(new AboutUsFragment());
             }
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
     public void setFragment(Fragment fragment) {
@@ -388,7 +380,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -408,8 +400,8 @@ public class MainActivity extends AppCompatActivity
         if (convertView == null) {
             myDialogViewHolder = new MyDialogViewHolder();
             convertView = LayoutInflater.from(this).inflate(R.layout.activity_imagepicker, null);
-            myDialogViewHolder.mTextView = (TextView) convertView.findViewById(R.id.dialogListText);
-            myDialogViewHolder.mImageView = (ImageView) convertView.findViewById(R.id.dialogListImage);
+            myDialogViewHolder.mTextView = convertView.findViewById(R.id.dialogListText);
+            myDialogViewHolder.mImageView = convertView.findViewById(R.id.dialogListImage);
             convertView.setTag(myDialogViewHolder);
         } else {
             myDialogViewHolder = (MyDialogViewHolder) convertView.getTag();
@@ -451,7 +443,7 @@ public class MainActivity extends AppCompatActivity
     public boolean doFragChange(Fragment fragment, int anim) {
         currentFragment = fragment;
         if (currentFragment instanceof HomeFragment) {
-            mAppBarLayout = (AppBarLayout) findViewById(R.id.appbarlayout);
+            mAppBarLayout = findViewById(R.id.appbarlayout);
             mAppBarLayout.setExpanded(true);
         }
         FragmentManager fragmentManager = getSupportFragmentManager();

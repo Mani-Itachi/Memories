@@ -14,7 +14,7 @@ import java.util.List;
 public class CommonAdapter<T> extends BaseAdapter {
 
     private List<T> mListItems = new ArrayList<>();
-    private OnGetViewListener<T> mOnGetViewListener;
+    private final OnGetViewListener<T> mOnGetViewListener;
 
     public CommonAdapter(OnGetViewListener<T> onGetViewListener) {
         mOnGetViewListener = onGetViewListener;

@@ -19,15 +19,9 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 import java.util.Random;
 
-import mani.itachi.memories.database.DbHelper;
-import mani.itachi.memories.database.MemoryDto;
-import mani.itachi.memories.uicomponents.RandomMemory;
 import mani.itachi.memories.uicomponents.SingleMediaScanner;
-
-import static android.media.CamcorderProfile.get;
 
 /**
  * Created by ManikantaInugurthi on 03-02-2017.
@@ -41,6 +35,12 @@ public class Utils {
 
     public static void hideKeyboard(Activity activity) {
         View view = activity.getCurrentFocus();
+
+        if(view == null) {
+            Log.w(Utils.class.getCanonicalName(), "Hide keyboard called on null view");
+            return;
+        }
+
         InputMethodManager methodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         methodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
@@ -73,7 +73,7 @@ public class Utils {
     }
 
     public static boolean isTypePresent(String type) {
-        String[] strings = {"birthday","party","food","classroom"};
+        String[] strings = {"birthday", "party", "food", "classroom"};
         for (String s : strings) {
             if (s.equals(type.trim())) {
                 Log.d("True:string recieved:", type);

@@ -5,9 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,6 +34,7 @@ import mani.itachi.memories.recyclerviewparts.MemoryListAdapter;
 import mani.itachi.memories.recyclerviewparts.RecyclerViewEmptyExtdener;
 import mani.itachi.memories.uicomponents.CommonAdapter;
 import mani.itachi.memories.utils.Utils;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,8 +60,8 @@ public class MyMemoriesFragment extends Fragment implements CommonAdapter.OnGetV
     }
 
     private void initViews(View v) {
-        mRecyclerView = (RecyclerViewEmptyExtdener) v.findViewById(R.id.pokemonRecyclerView);
-        mEmptyView = (TextView) v.findViewById(R.id.emptyRecyclerView);
+        mRecyclerView = v.findViewById(R.id.pokemonRecyclerView);
+        mEmptyView = v.findViewById(R.id.emptyRecyclerView);
         mEmptyView.setText("No Memories :(");
         mRecyclerView.setEmptyView(mEmptyView);
         if (nameList.isEmpty()) {
@@ -82,7 +84,7 @@ public class MyMemoriesFragment extends Fragment implements CommonAdapter.OnGetV
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (list.get(i).equals("Delete this card")) {
-                            AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                             builder.setTitle("Are you sure??");
                             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
@@ -108,7 +110,7 @@ public class MyMemoriesFragment extends Fragment implements CommonAdapter.OnGetV
                                             getActivity().runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    nameList=DbHelper.getInstance().getAllMyCards();
+                                                    nameList = DbHelper.getInstance().getAllMyCards();
                                                     memoryListAdapter.setMemList(nameList);
                                                     memoryListAdapter.notifyDataSetChanged();
                                                 }
@@ -140,7 +142,7 @@ public class MyMemoriesFragment extends Fragment implements CommonAdapter.OnGetV
                 MainActivity mainActivity = (MainActivity) getActivity();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("MemoryDto", clickedPokemon);
-                Log.v("calling",clickedPokemon.getName());
+                Log.v("calling", clickedPokemon.getName());
                 MemoryDetailFragment detailFragment = new MemoryDetailFragment();
                 detailFragment.setArguments(bundle);
                 Utils.hideKeyboard(mainActivity);
@@ -175,8 +177,8 @@ public class MyMemoriesFragment extends Fragment implements CommonAdapter.OnGetV
         if (convertView == null) {
             myDialogViewHolder = new MyDialogViewHolder();
             convertView = LayoutInflater.from(getActivity()).inflate(R.layout.activity_imagepicker, null);
-            myDialogViewHolder.mTextView = (TextView) convertView.findViewById(R.id.dialogListText);
-            myDialogViewHolder.mImageView = (ImageView) convertView.findViewById(R.id.dialogListImage);
+            myDialogViewHolder.mTextView = convertView.findViewById(R.id.dialogListText);
+            myDialogViewHolder.mImageView = convertView.findViewById(R.id.dialogListImage);
             convertView.setTag(myDialogViewHolder);
         } else {
             myDialogViewHolder = (MyDialogViewHolder) convertView.getTag();

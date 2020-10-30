@@ -5,8 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import java.util.List;
 import java.util.Random;
@@ -23,9 +23,6 @@ import mani.itachi.memories.R;
 import mani.itachi.memories.database.DbHelper;
 import mani.itachi.memories.database.MemoryDto;
 import mani.itachi.memories.utils.Utils;
-
-import static android.R.attr.bitmap;
-import static mani.itachi.memories.R.id.detailScreen;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,18 +44,18 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         List<MemoryDto> mem = DbHelper.getInstance().getAllMyCards();
-        if(mem.size()!=0){
+        if (mem.size() != 0) {
             randmem = new Random().nextInt(mem.size());
-        }else{
-            memoryDto = new MemoryDto(-1,"mani","type","date","desc","-1");
+        } else {
+            memoryDto = new MemoryDto(-1, "mani", "type", "date", "desc", "-1");
             return;
         }
-        Log.v("Size",String.valueOf(mem.size()));
-        Log.v("ID=",String.valueOf(randmem));
-        memoryDto=mem.get(randmem);
+        Log.v("Size", String.valueOf(mem.size()));
+        Log.v("ID=", String.valueOf(randmem));
+        memoryDto = mem.get(randmem);
     }
 
     @Override
@@ -69,20 +66,20 @@ public class HomeFragment extends Fragment {
         initializeViews(view);
         return view;
     }
-    
-    private void initializeViews(View view){
-        memoryName = (TextView) view.findViewById(R.id.homememory_name);
-        memoryDate = (TextView) view.findViewById(R.id.homememory_date);
-        memoryDesc = (TextView) view.findViewById(R.id.homememory_desc);
-        memoryType = (TextView) view.findViewById(R.id.homememory_type);
-        memoryImage = (ImageView) view.findViewById(R.id.homememory_image);
-        nomemories = (TextView) view.findViewById(R.id.no_memories_home);
+
+    private void initializeViews(View view) {
+        memoryName = view.findViewById(R.id.homememory_name);
+        memoryDate = view.findViewById(R.id.homememory_date);
+        memoryDesc = view.findViewById(R.id.homememory_desc);
+        memoryType = view.findViewById(R.id.homememory_type);
+        memoryImage = view.findViewById(R.id.homememory_image);
+        nomemories = view.findViewById(R.id.no_memories_home);
         memoryScreen = view.findViewById(R.id.memoryScreen);
-        if(memoryDto.getId()==-1){
-            Log.v("GetID",String.valueOf(memoryDto.getId()));
+        if (memoryDto.getId() == -1) {
+            Log.v("GetID", String.valueOf(memoryDto.getId()));
             memoryScreen.setVisibility(View.INVISIBLE);
             return;
-        }else{
+        } else {
             memoryScreen.setVisibility(View.VISIBLE);
             nomemories.setVisibility(View.INVISIBLE);
         }

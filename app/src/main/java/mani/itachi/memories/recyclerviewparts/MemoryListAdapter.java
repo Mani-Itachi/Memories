@@ -3,12 +3,13 @@ package mani.itachi.memories.recyclerviewparts;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -48,10 +49,10 @@ public class MemoryListAdapter extends RecyclerView.Adapter<MemoryListAdapter.My
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.name.setText(memList.get(position).getName());
         if (memList.get(position).getImagePath().equals("-1")) {
-            String fname=memList.get(position).getBitmapPath();
-            fname=fname.substring(0,fname.length()-4);
-            fname=fname+"thumb.png";
-            memImage= BitmapFactory.decodeFile(fname);
+            String fname = memList.get(position).getBitmapPath();
+            fname = fname.substring(0, fname.length() - 4);
+            fname = fname + "thumb.png";
+            memImage = BitmapFactory.decodeFile(fname);
         } else {
             memImage = BitmapFactory.decodeResource(mContext.getResources(), mContext.getResources()
                     .getIdentifier(memList.get(position).getImagePath(), "drawable", mContext.
@@ -71,8 +72,8 @@ public class MemoryListAdapter extends RecyclerView.Adapter<MemoryListAdapter.My
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.pokemonItemName);
-            image = (ImageView) itemView.findViewById(R.id.pokemonItemImage);
+            name = itemView.findViewById(R.id.pokemonItemName);
+            image = itemView.findViewById(R.id.pokemonItemImage);
         }
     }
 }

@@ -11,8 +11,8 @@
         android:id="@+id/dialogListText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/dialogListImage"
-        android:text="Camera"
+        android:layout_toEndOf="@+id/dialogListImage"
+        android:text="@string/camera"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:layout_centerVertical="true"
@@ -24,6 +24,7 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:id="@+id/dialogListImage"
-        android:src="@android:drawable/ic_menu_gallery"/>
+        android:src="@android:drawable/ic_menu_gallery"
+        android:contentDescription="@string/default_content_description" />
 
 </RelativeLayout>
