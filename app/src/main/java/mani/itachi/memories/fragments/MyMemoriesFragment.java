@@ -52,7 +52,7 @@ public class MyMemoriesFragment extends Fragment implements CommonAdapter.OnGetV
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getActivity().setTitle("My Cards");
-        nameList = DbHelper.getInstance().getAllMyCards();
+        nameList = DbHelper.getInstance().getAllCards();
         Collections.reverse(nameList);
         View view = inflater.inflate(R.layout.fragment_my_memories, container, false);
         initViews(view);
@@ -110,7 +110,7 @@ public class MyMemoriesFragment extends Fragment implements CommonAdapter.OnGetV
                                             getActivity().runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    nameList = DbHelper.getInstance().getAllMyCards();
+                                                    nameList = DbHelper.getInstance().getAllCards();
                                                     memoryListAdapter.setMemList(nameList);
                                                     memoryListAdapter.notifyDataSetChanged();
                                                 }

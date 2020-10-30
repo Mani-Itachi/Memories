@@ -2,11 +2,17 @@ package mani.itachi.memories.database;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * Created by ManikantaInugurthi on 02-02-2017.
  */
 
-//todo lombok here
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemoryDto implements Serializable {
 
     private int id;
@@ -17,9 +23,6 @@ public class MemoryDto implements Serializable {
     private String imagePath = "-1";
     private String bitmapPath = null;
 
-    public MemoryDto() {
-    }
-
     public MemoryDto(int id, String name, String type, String date, String desc, String imagePath) {
         this.id = id;
         this.name = name;
@@ -29,59 +32,4 @@ public class MemoryDto implements Serializable {
         this.imagePath = imagePath;
     }
 
-    public String getBitmapPath() {
-        return bitmapPath;
-    }
-
-    public void setBitmapPath(String bitmapPath) {
-        this.bitmapPath = bitmapPath;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 }

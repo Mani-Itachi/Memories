@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        List<MemoryDto> mem = DbHelper.getInstance().getAllMyCards();
+        List<MemoryDto> mem = DbHelper.getInstance().getAllCards();
         if (mem.size() != 0) {
             randmem = new Random().nextInt(mem.size());
         } else {

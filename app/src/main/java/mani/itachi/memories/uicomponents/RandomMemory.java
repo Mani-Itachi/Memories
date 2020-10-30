@@ -13,8 +13,8 @@ public class RandomMemory extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        DbHelper dbHelper = new DbHelper(getApplicationContext());
-        dbHelper.setMyCardsList();
+        DbHelper dbHelper = DbHelper.getInstance();
+        dbHelper.refreshAllCardsCache();
     }
 
 }
